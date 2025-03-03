@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServiceSigner";
+
+package SignFile;
+
+service SignFile {
+	rpc Login (LoginReq) returns (LoginRes);
+
+	rpc Sign(SignReq) returns (SignRes);
+}
+
+message LoginReq {
+	string clientId = 1;
+	string profileId = 2;
+	string userId = 3;
+	string clientSecret = 4;
+}
+
+message LoginRes {
+	string msg = 1;
+}
+
+message SignReq {
+	string userId = 1;
+	string fileName = 2;
+	string description = 3;
+	int32 numPage = 4;
+	int32 x = 5;
+	int32 y = 6;
+	int32 w = 7;
+	int32 h = 8;
+	bytes signatureImg = 9;
+	bytes chunk = 10;
+}
+
+message SignRes {
+	bool success = 1;
+	optional string txn = 2;
+	optional bytes chunk = 3;
+	optional string msg = 4;
+}
