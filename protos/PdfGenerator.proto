@@ -6,8 +6,9 @@ package PdfGenerator;
 
 service PdfGenerator {
 	rpc UploadFile(UploadReq) returns (UploadRes);
-
 	rpc GeneratePdf(GenPdfReq) returns (GenPdfRes);
+	rpc ConvertWordToPdfBuffer(FileBufferReq) returns (GenPdfRes);
+    rpc ReplaceTextAndConvertToPdfBuffer(FileBufferWithDataReq) returns (GenPdfRes);
 }
 
 message UploadReq {
@@ -26,4 +27,13 @@ message GenPdfReq {
 
 message GenPdfRes {
 	bytes buffers = 1;
+}
+
+message FileBufferReq {
+    bytes buffers = 1;
+}
+
+message FileBufferWithDataReq {
+    bytes buffers = 1;
+    string data = 2;
 }
